@@ -70,15 +70,27 @@ const vm = new Vue({
       setTimeout(() => {
         this.alert = false;
       }, 1500);
-    }
+    },
+    router() {
+      const hash = document.location.hash;
+      if (hash) {
+        this.fetchProductsItem(hash.replace("#", ""));
+      }
+    },
   },
   watch: {
+    product() {
+      document.title = this.product.nome || "Shop";
+      const hash = this.product.id || "";
+      history.pushState(null, null, `#${hash}`);
+    },
     car() {
       window.localStorage.car = JSON.stringify(this.car);
     }
   },
   created() {
     this.fetchProducts();
+    this.router();
     this.checkLocalStorage();
   }
 });
