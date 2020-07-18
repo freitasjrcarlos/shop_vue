@@ -1,7 +1,8 @@
 const vm = new Vue({
   el: "#app",
   data: {
-    products: []
+    products: [],
+    product: false
   },
   filters: {
     priceNumber(value) {
@@ -15,6 +16,13 @@ const vm = new Vue({
         .then(r => {
           this.products = r;
         });
+    },
+    fetchProductsItem(id) {
+      fetch(`./api/produtos/${id}/dados.json`)
+        .then(r => r.json())
+        .then(r => {
+          this.product = r;
+        })
     }
   },
   created() {
