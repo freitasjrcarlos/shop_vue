@@ -4,6 +4,7 @@ const vm = new Vue({
     products: [],
     product: false,
     car: [],
+    carActive: false,
     alertMessage: "Item adicionado!",
     alert: false,
   },
@@ -50,6 +51,11 @@ const vm = new Vue({
         this.product = false;
       }
     },
+    clickOut({ target, currentTarget }) {
+      if (target == currentTarget) {
+        this.carActive = false;
+      }
+    },
     addItem() {
       this.product.estoque--;
       const { id, nome, preco } = this.product;
@@ -63,6 +69,15 @@ const vm = new Vue({
       if (window.localStorage.car) {
         this.car = JSON.parse(window.localStorage.car);
       }
+    },
+    compareStock() {
+      const items = this.car.filter(({ id }) => {
+        if (id == this.product.id) {
+          return true;
+        }
+      });
+
+      this.product.estoque = this.product.estoque - items.length;
     },
     createAlert(message) {
       this.alertMessage = message;
@@ -83,6 +98,9 @@ const vm = new Vue({
       document.title = this.product.nome || "Shop";
       const hash = this.product.id || "";
       history.pushState(null, null, `#${hash}`);
+      if (this.product) {
+        this.compareStock();
+      }
     },
     car() {
       window.localStorage.car = JSON.stringify(this.car);

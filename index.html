@@ -12,15 +12,9 @@
   <div id="app">
     <header class="header">
       <img class="logo" src="./assets/techno.svg" alt="Logo" />
-      <div class="car-nav">
+      <div class="car-nav" @click="carActive = true">
         {{totalCar | priceNumber}} | {{car.length}}
       </div>
-      <ul>
-        <li v-for="(item, index) in car">
-          <p>{{item.nome}}</p>
-          <button @click="removeItem(index)">X</button>
-        </li>
-      </ul>
     </header>
 
     <section class="products">
@@ -58,6 +52,27 @@
             </li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section class="car-modal" :class="{active: carActive}" @click="clickOut">
+      <div class="car-container">
+        <button class="close-car" @click="carActive = false">X</button>
+        <h2 class="car-title">Carrinho</h2>
+
+        <div v-if="car.length > 0">
+          <ul class="car-list">
+            <li v-for="(item, index) in car" class="car-item">
+              <p>{{item.nome}}</p>
+              <p class="car-price">{{item.preco | priceNumber}}</p>
+              <button class="car-remove" @click="removeItem(index)">X</button>
+            </li>
+          </ul>
+          <p class="car-total">{{totalCar | priceNumber}}</p>
+          <button class="car-finish">Finalizar compra</button>
+        </div>
+
+        <p v-else>Carrinho vazio</p>
       </div>
     </section>
 
