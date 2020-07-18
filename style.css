@@ -321,3 +321,69 @@ body {
   border: none;
   font-family: "Noto Serif";
 }
+
+@media screen and (max-width: 900px) {
+  #app {
+    padding: 0 10px;
+  }
+
+  .products {
+    margin-top: 40px;
+  }
+
+  .products-item {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 300px;
+    margin: 30px auto;
+  }
+
+  .products-item-info {
+    padding: 20px;
+  }
+
+  .products-item-img {
+    max-width: 100%;
+  }
+
+  .products-item h2 {
+    font-size: 1.5rem;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-container {
+    grid-gap: 20px;
+    background: #ffffff;
+    padding: 10px 0;
+  }
+
+  .modal-img {
+    grid-row: 2;
+  }
+
+  .modal-img img {
+    width: 100%;
+    max-width: initial;
+  }
+
+  .modal-dados {
+    grid-column: 1;
+    padding: 10px;
+  }
+
+  .modal-dados .add {
+    margin-top: 20px;
+  }
+
+  .modal-reviews {
+    grid-column: 1;
+    padding: 10px;
+  }
+
+  .car-modal {
+    padding: 10px;
+  }
+}
