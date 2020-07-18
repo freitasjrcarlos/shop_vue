@@ -27,9 +27,9 @@
         <div class="modal-reviews">
           <h2> Reviews </h2>
           <ul>
-            <li v-for="review in product.reviews">
-              <p>{{review.descricao}}</p>
-              <p>{{review.nome}}| {{review.estrelas}}</p>
+            <li v-for="review in product.reviews" class="review">
+              <p class="review-desc">{{review.descricao}}</p>
+              <p class="review-name">{{review.nome}}| {{review.estrelas}}</p>
             </li>
           </ul>
         </div>
